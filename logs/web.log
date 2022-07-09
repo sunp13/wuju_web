@@ -97,3 +97,5 @@
 {"level":"info","time":"2022-07-10 01:24:45","message":"init_db succ"}
 {"level":"info","module":"init","time":"2022-07-10 01:25:02","message":"init_log succ"}
 {"level":"info","time":"2022-07-10 01:25:02","message":"init_db succ"}
+{"level":"info","module":"init","time":"2022-07-10 01:25:17","message":"init_log succ"}
+{"level":"info","time":"2022-07-10 01:25:17","message":"init_db succ"}
