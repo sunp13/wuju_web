@@ -178,3 +178,5 @@
 {"level":"info","time":"2022-07-10 03:58:02","message":"init_db succ"}
 {"level":"info","module":"init","time":"2022-07-10 04:03:40","message":"init_log succ"}
 {"level":"info","time":"2022-07-10 04:03:40","message":"init_db succ"}
+{"level":"info","module":"init","time":"2022-07-10 04:04:28","message":"init_log succ"}
+{"level":"info","time":"2022-07-10 04:04:28","message":"init_db succ"}
