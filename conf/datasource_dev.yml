@@ -1,0 +1,7 @@
+-
+  alias: default 
+  driverName: mysql
+  url: root:RRTrjpH64fPC@tcp(127.0.0.1:13306)/b365api?charset=utf8mb4
+  maxIdle: 1
+  maxConn: 5
+  debug: true
