@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"strings"
 	"wuju_web/entity"
 	"wuju_web/models"
@@ -31,6 +32,14 @@ func (c *GoalController) JSONList() {
 		c.ServeJSON()
 		return
 	}
+
+	for i, v := range data {
+		overName := fmt.Sprintf("%v", v["over_name"])
+		overName = strings.Replace(overName, ",", "/", -1)
+		overName = strings.Replace(overName, " ", "", -1)
+		data[i]["over_name"] = overName
+	}
+
 	result.Result = data
 	c.Data["json"] = result
 	c.ServeJSON()

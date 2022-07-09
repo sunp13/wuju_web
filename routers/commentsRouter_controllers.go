@@ -52,6 +52,15 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["wuju_web/controllers:MainController"] = append(beego.GlobalControllerRouter["wuju_web/controllers:MainController"],
+        beego.ControllerComments{
+            Method: "PageIndex",
+            Router: "/",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["wuju_web/controllers:UpComingController"] = append(beego.GlobalControllerRouter["wuju_web/controllers:UpComingController"],
         beego.ControllerComments{
             Method: "JSONList",

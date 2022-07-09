@@ -8,16 +8,10 @@ type comingModel struct{}
 func (m *comingModel) GetList(timeMax string) (res []map[string]interface{}, err error) {
 	sql := `
 	SELECT * FROM b365api.up_coming
-	where comm_time < ?
 	order by comm_time desc
-	limit 500
+	limit 1000
 	`
-
-	params := []interface{}{
-		timeMax,
-	}
-
-	res, err = dbtool.D.QuerySQL(sql, params)
+	res, err = dbtool.D.QuerySQL(sql, nil)
 	return
 }
 

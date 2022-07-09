@@ -1,9 +1,11 @@
 package controllers
 
 import (
+	"fmt"
 	"strings"
 	"wuju_web/entity"
 	"wuju_web/models"
+	"wuju_web/utils"
 
 	"github.com/beego/beego/v2/server/web"
 )
@@ -35,6 +37,12 @@ func (c *AsiaController) JSONList() {
 		c.ServeJSON()
 		return
 	}
+
+	for i, v := range data {
+		homeHandicap := fmt.Sprintf("%v", v["home_handicap"])
+		data[i]["home_handicap"] = utils.UtilTranslate(homeHandicap)
+	}
+
 	result.Result = data
 	result.Message = "成功"
 	c.Data["json"] = result

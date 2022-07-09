@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 	"wuju_web/entity"
 	"wuju_web/models"
@@ -27,6 +28,14 @@ func (c *UpComingController) JSONList() {
 		c.ServeJSON()
 		return
 	}
+
+	for i, v := range data {
+		vUnix := fmt.Sprintf("%v", v["comm_time"])
+		vUnixInt64, _ := strconv.ParseInt(vUnix, 10, 64)
+		vTime := time.Unix(vUnixInt64, 0)
+		data[i]["comm_time"] = vTime.Format("2006-01-02 15:04:05")
+	}
+
 	result.Result = data
 	c.Data["json"] = result
 	c.ServeJSON()

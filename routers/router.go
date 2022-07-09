@@ -19,4 +19,6 @@ func init() {
 	web.Include(&controllers.GoalController{})
 	// event
 	web.Include(&controllers.EventController{})
+	// main
+	web.Include(&controllers.MainController{})
 }
