@@ -27,6 +27,7 @@ func UtilTranslate(handcliap string) string {
 	homeHandicap = strings.Replace(homeHandicap, "9.5", "九球半", -1)
 	homeHandicap = strings.Replace(homeHandicap, "10.0", "十球", -1)
 	homeHandicap = strings.Replace(homeHandicap, "10.5", "十球半", -1)
+	homeHandicap = strings.Replace(homeHandicap, "1", "一球", -1)
 	homeHandicap = strings.Replace(homeHandicap, ",", "/", -1)
 	homeHandicap = strings.Replace(homeHandicap, " ", "", -1)
 	return homeHandicap

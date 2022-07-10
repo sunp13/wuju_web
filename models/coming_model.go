@@ -1,17 +1,29 @@
 package models
 
-import "github.com/sunp13/dbtool"
+import (
+	"fmt"
+
+	"github.com/sunp13/dbtool"
+)
 
 type comingModel struct{}
 
 // 获取最近开赛的500场比赛
-func (m *comingModel) GetList(timeMax string) (res []map[string]interface{}, err error) {
+func (m *comingModel) GetList(begin, timeMax string) (res []map[string]interface{}, err error) {
 	sql := `
 	SELECT * FROM b365api.up_coming
-	order by comm_time desc
-	limit 1000
+	where comm_time < ?
+	  and comm_time > ?
+	order by comm_time
+	limit 500
 	`
-	res, err = dbtool.D.QuerySQL(sql, nil)
+
+	params := []interface{}{
+		timeMax,
+		begin,
+	}
+
+	res, err = dbtool.D.QuerySQL(sql, params)
 	return
 }
 
@@ -90,5 +102,56 @@ func (m *comingModel) GetListByTeamID(homeID, awayID string) (res []map[string]i
 		awayID,
 	}
 	res, err = dbtool.D.QuerySQL(sql, params)
+	return
+}
+
+// 获取主队信息
+func (m *comingModel) GetHomeList() (res []map[string]interface{}, err error) {
+	sql := `
+	SELECT distinct home_id,home_name FROM b365api.up_coming
+	`
+	res, err = dbtool.D.QuerySQL(sql, nil)
+	return
+}
+
+// 获取客队信息
+func (m *comingModel) GetAwayList() (res []map[string]interface{}, err error) {
+	sql := `
+	SELECT distinct away_id,away_name FROM b365api.up_coming
+	`
+	res, err = dbtool.D.QuerySQL(sql, nil)
+	return
+}
+
+//
+func (m *comingModel) GetFilterList(leagueID, beginTime, endTime, homeID, awayID string) (res []map[string]interface{}, err error) {
+
+	sql := `
+	select * from b365api.up_coming
+	where 1=1
+	`
+	if leagueID != "" {
+		sql += fmt.Sprintf("and league_id = '%s' ", leagueID)
+	}
+
+	if homeID != "" {
+		sql += fmt.Sprintf("and home_id = '%s' ", homeID)
+	}
+
+	if awayID != "" {
+		sql += fmt.Sprintf("and away_id = '%s' ", awayID)
+	}
+
+	if beginTime != "" {
+		sql += fmt.Sprintf("and comm_time > '%s' ", beginTime)
+	}
+
+	if endTime != "" {
+		sql += fmt.Sprintf("and comm_time < '%s' ", endTime)
+	}
+
+	sql += "order by comm_time"
+
+	res, err = dbtool.D.QuerySQL(sql, nil)
 	return
 }

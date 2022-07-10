@@ -63,6 +63,33 @@ func init() {
 
     beego.GlobalControllerRouter["wuju_web/controllers:UpComingController"] = append(beego.GlobalControllerRouter["wuju_web/controllers:UpComingController"],
         beego.ControllerComments{
+            Method: "JSONGetAwayList",
+            Router: "/upcoming/away.json",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["wuju_web/controllers:UpComingController"] = append(beego.GlobalControllerRouter["wuju_web/controllers:UpComingController"],
+        beego.ControllerComments{
+            Method: "JSONHistoryQuery",
+            Router: "/upcoming/history_query.json",
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["wuju_web/controllers:UpComingController"] = append(beego.GlobalControllerRouter["wuju_web/controllers:UpComingController"],
+        beego.ControllerComments{
+            Method: "JSONGetHomeList",
+            Router: "/upcoming/home.json",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["wuju_web/controllers:UpComingController"] = append(beego.GlobalControllerRouter["wuju_web/controllers:UpComingController"],
+        beego.ControllerComments{
             Method: "JSONList",
             Router: "/upcoming/list.json",
             AllowHTTPMethods: []string{"get"},
